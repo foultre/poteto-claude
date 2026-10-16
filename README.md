@@ -1,3 +1,14 @@
+## Install in Claude Code
+
+```sh
+claude plugin marketplace add foultre/poteto-claude
+claude plugin install pstack@pstack-claude
+```
+
+Everything below is a copy-paste of the original [pstack README](https://github.com/cursor/plugins/blob/main/pstack/README.md), with Cursor model and agent names mapped to their Claude Code equivalents.
+
+---
+
 # pstack
 
 i'm [poteto](https://x.com/poteto). i'm not a president or ceo, but i've worked with millions of lines of code at Meta, Netflix, and Cursor. i'm also on the react core team where i help build and maintain react compiler.

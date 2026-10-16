@@ -46,6 +46,19 @@ PATCHES = {
     ],
 }
 
+README_HEADER = f"""## Install in Claude Code
+
+```sh
+claude plugin marketplace add foultre/poteto-claude
+claude plugin install {PLUGIN}@{PLUGIN}-claude
+```
+
+Everything below is a copy-paste of the original [pstack README](https://github.com/cursor/plugins/blob/main/pstack/README.md), with Cursor model and agent names mapped to their Claude Code equivalents.
+
+---
+
+"""
+
 LEFTOVERS = [
     r"claude-opus-\d", r"grok-\d", r"gpt-5", r"pstack-models\.mdc",
     r"generalPurpose", r"is_background",
@@ -81,8 +94,8 @@ def main():
         shutil.rmtree(ROOT / name, ignore_errors=True)
         shutil.copytree(src / name, ROOT / name,
                         ignore=shutil.ignore_patterns("node_modules"))
-    for name in ("LICENSE", "README.md"):
-        shutil.copy(src / name, ROOT / name)
+    shutil.copy(src / "LICENSE", ROOT / "LICENSE")
+    (ROOT / "README.md").write_text(README_HEADER + (src / "README.md").read_text())
     shutil.copytree(OVERLAYS, ROOT, dirs_exist_ok=True)
 
     for f in [ROOT / "README.md", *(p for d in ("skills", "agents", "docs") for p in (ROOT / d).rglob("*.md"))]:
